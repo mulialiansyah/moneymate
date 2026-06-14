@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\SavingTransaction;
 
 class SavingGoal extends Model
 {
@@ -18,5 +20,10 @@ class SavingGoal extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function savingTransactions(): HasMany
+    {
+        return $this->hasMany(SavingTransaction::class);
     }
 }
