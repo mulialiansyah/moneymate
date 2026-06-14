@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Category;
 use App\Models\Transaction;
+use App\Models\SavingGoal;
 
 
 #[Fillable(['name', 'email', 'password'])]
@@ -28,5 +29,10 @@ class User extends Authenticatable
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function savingGoals(): HasMany
+    {
+        return $this->hasMany(SavingGoal::class);
     }
 }
