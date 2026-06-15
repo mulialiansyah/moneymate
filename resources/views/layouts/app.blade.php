@@ -1,36 +1,83 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyMate</title>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-gray-100">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<div class="flex min-h-screen">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-900 text-white">
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+        <div class="p-6 text-2xl font-bold">
+            Tabungan
         </div>
-    </body>
+
+        <nav class="mt-6">
+
+            <a href="#"
+               class="block px-6 py-3 hover:bg-gray-800">
+               📊 Dashboard
+            </a>
+
+            <a href="{{ route('categories.index') }}"
+               class="block px-6 py-3 hover:bg-gray-800">
+               📁 Categories
+            </a>
+
+            <a href="#"
+               class="block px-6 py-3 hover:bg-gray-800">
+               💸 Transactions
+            </a>
+
+            <a href="#"
+               class="block px-6 py-3 hover:bg-gray-800">
+               🎯 Saving Goals
+            </a>
+
+            <a href="#"
+               class="block px-6 py-3 hover:bg-gray-800">
+               📈 Reports
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="flex-1">
+
+        <!-- Navbar -->
+        <header class="bg-white shadow px-6 py-4 flex justify-between">
+
+            <h1 class="font-semibold">
+                MoneyMate
+            </h1>
+
+
+            <div>
+                👤 {{ auth()->user()->name }}
+            </div>
+
+        </header>
+
+
+        <!-- Content -->
+        <section class="p-6">
+
+            @yield('content')
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
 </html>
